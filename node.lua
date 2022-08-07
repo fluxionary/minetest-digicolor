@@ -1,5 +1,3 @@
-local S = digicolor.S
-local F = minetest.formspec_escape
 local FS = digicolor.FS
 
 minetest.register_node("digicolor:node", {
