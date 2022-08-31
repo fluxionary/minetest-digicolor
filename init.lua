@@ -24,3 +24,4 @@ digicolor = {
 }
 
 digicolor.dofile("node")
+digicolor.dofile("craft")
