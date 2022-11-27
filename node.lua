@@ -5,9 +5,9 @@ minetest.register_node("digicolor:node", {
 	paramtype2 = "color",
 	palette = "digicolor_palette.png",
 
-	tiles = {"[combine:1x1^[noalpha^[colorize:#FFFFFF"},
+	tiles = { "[combine:1x1^[noalpha^[colorize:#FFFFFF" },
 
-	groups = {dig_immediate = 2},
+	groups = { dig_immediate = 2 },
 
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -41,7 +41,6 @@ minetest.register_node("digicolor:node", {
 
 				if msg == "GET" then
 					digilines.receptor_send(pos, digilines.rules.default, channel, node.param2)
-
 				else
 					local param2 = tonumber(msg)
 					if param2 then
