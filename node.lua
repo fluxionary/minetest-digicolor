@@ -1,8 +1,22 @@
+local f = string.format
+
+local S = digicolor.S
 local FS = digicolor.FS
 
+local function set_formspec(pos)
+	local meta = minetest.get_meta(pos)
+	local fs_parts = {
+		"formspec_version[6]",
+		"size[2,2.5]",
+		f("field[0,0.5;2,1;channel;%s;${channel}]", FS("channel")),
+		"button_exit[0.5,1.5;1,1;save;save]",
+	}
+	meta:set_string("formspec", table.concat(fs_parts, ""))
+end
+
 minetest.register_node("digicolor:node", {
-	description = "programmable color node",
-	paramtype2 = "color",
+	description = S("programmable color node"),
+	paramtype2 = S("color"),
 	palette = "digicolor_palette.png",
 
 	tiles = { "[combine:1x1^[noalpha^[colorize:#FFFFFF" },
@@ -10,8 +24,7 @@ minetest.register_node("digicolor:node", {
 	groups = { dig_immediate = 2 },
 
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", ("size[2,2]field[1,1;1,1;channel;%s;${channel}]"):format(FS("channel")))
+		set_formspec(pos)
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if not minetest.is_player(sender) then
@@ -51,4 +64,14 @@ minetest.register_node("digicolor:node", {
 			end,
 		},
 	},
+})
+
+minetest.register_lbm({
+	name = "digicolor:update_formspec",
+	description = S("update node formspec"),
+	nodenames = { "digicolor:node" },
+	run_at_every_load = false,
+	action = function(pos)
+		set_formspec(pos)
+	end,
 })
