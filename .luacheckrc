@@ -652,5 +652,6 @@ stds.digicolor = {
 	read_globals = {
 		"digilines",
 		"fmod",
+		"futil",
 	},
 }

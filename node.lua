@@ -27,7 +27,7 @@ minetest.register_node("digicolor:node", {
 		set_formspec(pos)
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		if not minetest.is_player(sender) then
+		if not futil.is_player(sender) then
 			return
 		end
 
