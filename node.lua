@@ -16,8 +16,9 @@ end
 
 minetest.register_node("digicolor:node", {
 	description = S("programmable color node"),
-	paramtype2 = S("color"),
+	paramtype2 = "color",
 	palette = "digicolor_palette.png",
+	place_param2 = 0,
 
 	tiles = { "[combine:1x1^[noalpha^[colorize:#FFFFFF" },
 
