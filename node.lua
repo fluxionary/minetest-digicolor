@@ -18,7 +18,7 @@ minetest.register_node("digicolor:node", {
 	description = S("programmable color node"),
 	paramtype2 = "color",
 	palette = "digicolor_palette.png",
-	place_param2 = 10, -- white
+	place_param2 = 255, -- white
 	drop = "digicolor:node",
 
 	tiles = { "[combine:1x1^[noalpha^[colorize:#FFFFFF" },
