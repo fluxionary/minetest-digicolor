@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digiline Color Swatches</title>
+    <meta name="author" content="Deedee Daydream for Your Land game server">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ffffff;
+        }
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 2px solid #4b5563;
+            background-color: #1f2937;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.15s ease-in-out;
+        }
+        .search-input:focus {
+            border-color: #3b82f6;
+        }
+        .swatch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .swatch-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        @media (min-width: 768px) {
+            .swatch-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .swatch-grid {
+                grid-template-columns: repeat(10, 1fr);
+            }
+        }
+        @media (min-width: 1280px) {
+            .swatch-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+        .color-swatch {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+        .swatch-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .color-swatch:hover .swatch-info {
+            opacity: 1;
+        }
+        .info-number {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .info-hex {
+            font-size: 0.75rem;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Digiline Color Swatches</h1>
+        
+        <!-- Search bar -->
+        <div class="search-container">
+            <input type="text" id="color-search" placeholder="Search by number or hex code..." class="search-input">
+        </div>
+
+        <div id="swatch-container" class="swatch-grid">
+            
+            <!-- Swatch 1 -->
+            <div class="color-swatch" style="background-color: #000000;" data-index="1" data-hex="#000000">
+                <div class="swatch-info">
+                    <span class="info-number">1</span>
+                    <span class="info-hex">#000000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 2 -->
+            <div class="color-swatch" style="background-color: #0b0b0b;" data-index="2" data-hex="#0b0b0b">
+                <div class="swatch-info">
+                    <span class="info-number">2</span>
+                    <span class="info-hex">#0b0b0b</span>
+                </div>
+            </div>
+
+            <!-- Swatch 3 -->
+            <div class="color-swatch" style="background-color: #222222;" data-index="3" data-hex="#222222">
+                <div class="swatch-info">
+                    <span class="info-number">3</span>
+                    <span class="info-hex">#222222</span>
+                </div>
+            </div>
+
+            <!-- Swatch 4 -->
+            <div class="color-swatch" style="background-color: #444444;" data-index="4" data-hex="#444444">
+                <div class="swatch-info">
+                    <span class="info-number">4</span>
+                    <span class="info-hex">#444444</span>
+                </div>
+            </div>
+
+            <!-- Swatch 5 -->
+            <div class="color-swatch" style="background-color: #555555;" data-index="5" data-hex="#555555">
+                <div class="swatch-info">
+                    <span class="info-number">5</span>
+                    <span class="info-hex">#555555</span>
+                </div>
+            </div>
+
+            <!-- Swatch 6 -->
+            <div class="color-swatch" style="background-color: #777777;" data-index="6" data-hex="#777777">
+                <div class="swatch-info">
+                    <span class="info-number">6</span>
+                    <span class="info-hex">#777777</span>
+                </div>
+            </div>
+
+            <!-- Swatch 7 -->
+            <div class="color-swatch" style="background-color: #888888;" data-index="7" data-hex="#888888">
+                <div class="swatch-info">
+                    <span class="info-number">7</span>
+                    <span class="info-hex">#888888</span>
+                </div>
+            </div>
+
+            <!-- Swatch 8 -->
+            <div class="color-swatch" style="background-color: #aaaaaa;" data-index="8" data-hex="#aaaaaa">
+                <div class="swatch-info">
+                    <span class="info-number">8</span>
+                    <span class="info-hex">#aaaaaa</span>
+                </div>
+            </div>
+
+            <!-- Swatch 9 -->
+            <div class="color-swatch" style="background-color: #bbbbbb;" data-index="9" data-hex="#bbbbbb">
+                <div class="swatch-info">
+                    <span class="info-number">9</span>
+                    <span class="info-hex">#bbbbbb</span>
+                </div>
+            </div>
+
+            <!-- Swatch 10 -->
+            <div class="color-swatch" style="background-color: #dddddd;" data-index="10" data-hex="#dddddd">
+                <div class="swatch-info">
+                    <span class="info-number">10</span>
+                    <span class="info-hex">#dddddd</span>
+                </div>
+            </div>
+
+            <!-- Swatch 11 -->
+            <div class="color-swatch" style="background-color: #eeeeee;" data-index="11" data-hex="#eeeeee">
+                <div class="swatch-info">
+                    <span class="info-number">11</span>
+                    <span class="info-hex">#eeeeee</span>
+                </div>
+            </div>
+
+            <!-- Swatch 12 -->
+            <div class="color-swatch" style="background-color: #00000b;" data-index="12" data-hex="#00000b">
+                <div class="swatch-info">
+                    <span class="info-number">12</span>
+                    <span class="info-hex">#00000b</span>
+                </div>
+            </div>
+
+            <!-- Swatch 13 -->
+            <div class="color-swatch" style="background-color: #000022;" data-index="13" data-hex="#000022">
+                <div class="swatch-info">
+                    <span class="info-number">13</span>
+                    <span class="info-hex">#000022</span>
+                </div>
+            </div>
+
+            <!-- Swatch 14 -->
+            <div class="color-swatch" style="background-color: #000044;" data-index="14" data-hex="#000044">
+                <div class="swatch-info">
+                    <span class="info-number">14</span>
+                    <span class="info-hex">#000044</span>
+                </div>
+            </div>
+
+            <!-- Swatch 15 -->
+            <div class="color-swatch" style="background-color: #000055;" data-index="15" data-hex="#000055">
+                <div class="swatch-info">
+                    <span class="info-number">15</span>
+                    <span class="info-hex">#000055</span>
+                </div>
+            </div>
+
+            <!-- Swatch 16 -->
+            <div class="color-swatch" style="background-color: #000077;" data-index="16" data-hex="#000077">
+                <div class="swatch-info">
+                    <span class="info-number">16</span>
+                    <span class="info-hex">#000077</span>
+                </div>
+            </div>
+
+            <!-- Swatch 17 -->
+            <div class="color-swatch" style="background-color: #000088;" data-index="17" data-hex="#000088">
+                <div class="swatch-info">
+                    <span class="info-number">17</span>
+                    <span class="info-hex">#000088</span>
+                </div>
+            </div>
+
+            <!-- Swatch 18 -->
+            <div class="color-swatch" style="background-color: #0000aa;" data-index="18" data-hex="#0000aa">
+                <div class="swatch-info">
+                    <span class="info-number">18</span>
+                    <span class="info-hex">#0000aa</span>
+                </div>
+            </div>
+
+            <!-- Swatch 19 -->
+            <div class="color-swatch" style="background-color: #0000bb;" data-index="19" data-hex="#0000bb">
+                <div class="swatch-info">
+                    <span class="info-number">19</span>
+                    <span class="info-hex">#0000bb</span>
+                </div>
+            </div>
+
+            <!-- Swatch 20 -->
+            <div class="color-swatch" style="background-color: #0000dd;" data-index="20" data-hex="#0000dd">
+                <div class="swatch-info">
+                    <span class="info-number">20</span>
+                    <span class="info-hex">#0000dd</span>
+                </div>
+            </div>
+
+            <!-- Swatch 21 -->
+            <div class="color-swatch" style="background-color: #0000ee;" data-index="21" data-hex="#0000ee">
+                <div class="swatch-info">
+                    <span class="info-number">21</span>
+                    <span class="info-hex">#0000ee</span>
+                </div>
+            </div>
+
+            <!-- Swatch 22 -->
+            <div class="color-swatch" style="background-color: #000b00;" data-index="22" data-hex="#000b00">
+                <div class="swatch-info">
+                    <span class="info-number">22</span>
+                    <span class="info-hex">#000b00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 23 -->
+            <div class="color-swatch" style="background-color: #002200;" data-index="23" data-hex="#002200">
+                <div class="swatch-info">
+                    <span class="info-number">23</span>
+                    <span class="info-hex">#002200</span>
+                </div>
+            </div>
+
+            <!-- Swatch 24 -->
+            <div class="color-swatch" style="background-color: #004400;" data-index="24" data-hex="#004400">
+                <div class="swatch-info">
+                    <span class="info-number">24</span>
+                    <span class="info-hex">#004400</span>
+                </div>
+            </div>
+
+            <!-- Swatch 25 -->
+            <div class="color-swatch" style="background-color: #005500;" data-index="25" data-hex="#005500">
+                <div class="swatch-info">
+                    <span class="info-number">25</span>
+                    <span class="info-hex">#005500</span>
+                </div>
+            </div>
+
+            <!-- Swatch 26 -->
+            <div class="color-swatch" style="background-color: #007700;" data-index="26" data-hex="#007700">
+                <div class="swatch-info">
+                    <span class="info-number">26</span>
+                    <span class="info-hex">#007700</span>
+                </div>
+            </div>
+
+            <!-- Swatch 27 -->
+            <div class="color-swatch" style="background-color: #008800;" data-index="27" data-hex="#008800">
+                <div class="swatch-info">
+                    <span class="info-number">27</span>
+                    <span class="info-hex">#008800</span>
+                </div>
+            </div>
+
+            <!-- Swatch 28 -->
+            <div class="color-swatch" style="background-color: #00aa00;" data-index="28" data-hex="#00aa00">
+                <div class="swatch-info">
+                    <span class="info-number">28</span>
+                    <span class="info-hex">#00aa00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 29 -->
+            <div class="color-swatch" style="background-color: #00bb00;" data-index="29" data-hex="#00bb00">
+                <div class="swatch-info">
+                    <span class="info-number">29</span>
+                    <span class="info-hex">#00bb00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 30 -->
+            <div class="color-swatch" style="background-color: #00dd00;" data-index="30" data-hex="#00dd00">
+                <div class="swatch-info">
+                    <span class="info-number">30</span>
+                    <span class="info-hex">#00dd00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 31 -->
+            <div class="color-swatch" style="background-color: #00ee00;" data-index="31" data-hex="#00ee00">
+                <div class="swatch-info">
+                    <span class="info-number">31</span>
+                    <span class="info-hex">#00ee00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 32 -->
+            <div class="color-swatch" style="background-color: #0b0000;" data-index="32" data-hex="#0b0000">
+                <div class="swatch-info">
+                    <span class="info-number">32</span>
+                    <span class="info-hex">#0b0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 33 -->
+            <div class="color-swatch" style="background-color: #220000;" data-index="33" data-hex="#220000">
+                <div class="swatch-info">
+                    <span class="info-number">33</span>
+                    <span class="info-hex">#220000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 34 -->
+            <div class="color-swatch" style="background-color: #440000;" data-index="34" data-hex="#440000">
+                <div class="swatch-info">
+                    <span class="info-number">34</span>
+                    <span class="info-hex">#440000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 35 -->
+            <div class="color-swatch" style="background-color: #550000;" data-index="35" data-hex="#550000">
+                <div class="swatch-info">
+                    <span class="info-number">35</span>
+                    <span class="info-hex">#550000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 36 -->
+            <div class="color-swatch" style="background-color: #770000;" data-index="36" data-hex="#770000">
+                <div class="swatch-info">
+                    <span class="info-number">36</span>
+                    <span class="info-hex">#770000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 37 -->
+            <div class="color-swatch" style="background-color: #880000;" data-index="37" data-hex="#880000">
+                <div class="swatch-info">
+                    <span class="info-number">37</span>
+                    <span class="info-hex">#880000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 38 -->
+            <div class="color-swatch" style="background-color: #aa0000;" data-index="38" data-hex="#aa0000">
+                <div class="swatch-info">
+                    <span class="info-number">38</span>
+                    <span class="info-hex">#aa0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 39 -->
+            <div class="color-swatch" style="background-color: #bb0000;" data-index="39" data-hex="#bb0000">
+                <div class="swatch-info">
+                    <span class="info-number">39</span>
+                    <span class="info-hex">#bb0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 40 -->
+            <div class="color-swatch" style="background-color: #dd0000;" data-index="40" data-hex="#dd0000">
+                <div class="swatch-info">
+                    <span class="info-number">40</span>
+                    <span class="info-hex">#dd0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 41 -->
+            <div class="color-swatch" style="background-color: #ee0000;" data-index="41" data-hex="#ee0000">
+                <div class="swatch-info">
+                    <span class="info-number">41</span>
+                    <span class="info-hex">#ee0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 42 -->
+            <div class="color-swatch" style="background-color: #000033;" data-index="42" data-hex="#000033">
+                <div class="swatch-info">
+                    <span class="info-number">42</span>
+                    <span class="info-hex">#000033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 43 -->
+            <div class="color-swatch" style="background-color: #000066;" data-index="43" data-hex="#000066">
+                <div class="swatch-info">
+                    <span class="info-number">43</span>
+                    <span class="info-hex">#000066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 44 -->
+            <div class="color-swatch" style="background-color: #000099;" data-index="44" data-hex="#000099">
+                <div class="swatch-info">
+                    <span class="info-number">44</span>
+                    <span class="info-hex">#000099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 45 -->
+            <div class="color-swatch" style="background-color: #0000cc;" data-index="45" data-hex="#0000cc">
+                <div class="swatch-info">
+                    <span class="info-number">45</span>
+                    <span class="info-hex">#0000cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 46 -->
+            <div class="color-swatch" style="background-color: #0000ff;" data-index="46" data-hex="#0000ff">
+                <div class="swatch-info">
+                    <span class="info-number">46</span>
+                    <span class="info-hex">#0000ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 47 -->
+            <div class="color-swatch" style="background-color: #003300;" data-index="47" data-hex="#003300">
+                <div class="swatch-info">
+                    <span class="info-number">47</span>
+                    <span class="info-hex">#003300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 48 -->
+            <div class="color-swatch" style="background-color: #003333;" data-index="48" data-hex="#003333">
+                <div class="swatch-info">
+                    <span class="info-number">48</span>
+                    <span class="info-hex">#003333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 49 -->
+            <div class="color-swatch" style="background-color: #003366;" data-index="49" data-hex="#003366">
+                <div class="swatch-info">
+                    <span class="info-number">49</span>
+                    <span class="info-hex">#003366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 50 -->
+            <div class="color-swatch" style="background-color: #003399;" data-index="50" data-hex="#003399">
+                <div class="swatch-info">
+                    <span class="info-number">50</span>
+                    <span class="info-hex">#003399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 51 -->
+            <div class="color-swatch" style="background-color: #0033cc;" data-index="51" data-hex="#0033cc">
+                <div class="swatch-info">
+                    <span class="info-number">51</span>
+                    <span class="info-hex">#0033cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 52 -->
+            <div class="color-swatch" style="background-color: #0033ff;" data-index="52" data-hex="#0033ff">
+                <div class="swatch-info">
+                    <span class="info-number">52</span>
+                    <span class="info-hex">#0033ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 53 -->
+            <div class="color-swatch" style="background-color: #006600;" data-index="53" data-hex="#006600">
+                <div class="swatch-info">
+                    <span class="info-number">53</span>
+                    <span class="info-hex">#006600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 54 -->
+            <div class="color-swatch" style="background-color: #006633;" data-index="54" data-hex="#006633">
+                <div class="swatch-info">
+                    <span class="info-number">54</span>
+                    <span class="info-hex">#006633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 55 -->
+            <div class="color-swatch" style="background-color: #006666;" data-index="55" data-hex="#006666">
+                <div class="swatch-info">
+                    <span class="info-number">55</span>
+                    <span class="info-hex">#006666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 56 -->
+            <div class="color-swatch" style="background-color: #006699;" data-index="56" data-hex="#006699">
+                <div class="swatch-info">
+                    <span class="info-number">56</span>
+                    <span class="info-hex">#006699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 57 -->
+            <div class="color-swatch" style="background-color: #0066cc;" data-index="57" data-hex="#0066cc">
+                <div class="swatch-info">
+                    <span class="info-number">57</span>
+                    <span class="info-hex">#0066cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 58 -->
+            <div class="color-swatch" style="background-color: #0066ff;" data-index="58" data-hex="#0066ff">
+                <div class="swatch-info">
+                    <span class="info-number">58</span>
+                    <span class="info-hex">#0066ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 59 -->
+            <div class="color-swatch" style="background-color: #009900;" data-index="59" data-hex="#009900">
+                <div class="swatch-info">
+                    <span class="info-number">59</span>
+                    <span class="info-hex">#009900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 60 -->
+            <div class="color-swatch" style="background-color: #009933;" data-index="60" data-hex="#009933">
+                <div class="swatch-info">
+                    <span class="info-number">60</span>
+                    <span class="info-hex">#009933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 61 -->
+            <div class="color-swatch" style="background-color: #009966;" data-index="61" data-hex="#009966">
+                <div class="swatch-info">
+                    <span class="info-number">61</span>
+                    <span class="info-hex">#009966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 62 -->
+            <div class="color-swatch" style="background-color: #009999;" data-index="62" data-hex="#009999">
+                <div class="swatch-info">
+                    <span class="info-number">62</span>
+                    <span class="info-hex">#009999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 63 -->
+            <div class="color-swatch" style="background-color: #0099cc;" data-index="63" data-hex="#0099cc">
+                <div class="swatch-info">
+                    <span class="info-number">63</span>
+                    <span class="info-hex">#0099cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 64 -->
+            <div class="color-swatch" style="background-color: #0099ff;" data-index="64" data-hex="#0099ff">
+                <div class="swatch-info">
+                    <span class="info-number">64</span>
+                    <span class="info-hex">#0099ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 65 -->
+            <div class="color-swatch" style="background-color: #00cc00;" data-index="65" data-hex="#00cc00">
+                <div class="swatch-info">
+                    <span class="info-number">65</span>
+                    <span class="info-hex">#00cc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 66 -->
+            <div class="color-swatch" style="background-color: #00cc33;" data-index="66" data-hex="#00cc33">
+                <div class="swatch-info">
+                    <span class="info-number">66</span>
+                    <span class="info-hex">#00cc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 67 -->
+            <div class="color-swatch" style="background-color: #00cc66;" data-index="67" data-hex="#00cc66">
+                <div class="swatch-info">
+                    <span class="info-number">67</span>
+                    <span class="info-hex">#00cc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 68 -->
+            <div class="color-swatch" style="background-color: #00cc99;" data-index="68" data-hex="#00cc99">
+                <div class="swatch-info">
+                    <span class="info-number">68</span>
+                    <span class="info-hex">#00cc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 69 -->
+            <div class="color-swatch" style="background-color: #00cccc;" data-index="69" data-hex="#00cccc">
+                <div class="swatch-info">
+                    <span class="info-number">69</span>
+                    <span class="info-hex">#00cccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 70 -->
+            <div class="color-swatch" style="background-color: #00ccff;" data-index="70" data-hex="#00ccff">
+                <div class="swatch-info">
+                    <span class="info-number">70</span>
+                    <span class="info-hex">#00ccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 71 -->
+            <div class="color-swatch" style="background-color: #00ff00;" data-index="71" data-hex="#00ff00">
+                <div class="swatch-info">
+                    <span class="info-number">71</span>
+                    <span class="info-hex">#00ff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 72 -->
+            <div class="color-swatch" style="background-color: #00ff33;" data-index="72" data-hex="#00ff33">
+                <div class="swatch-info">
+                    <span class="info-number">72</span>
+                    <span class="info-hex">#00ff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 73 -->
+            <div class="color-swatch" style="background-color: #00ff66;" data-index="73" data-hex="#00ff66">
+                <div class="swatch-info">
+                    <span class="info-number">73</span>
+                    <span class="info-hex">#00ff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 74 -->
+            <div class="color-swatch" style="background-color: #00ff99;" data-index="74" data-hex="#00ff99">
+                <div class="swatch-info">
+                    <span class="info-number">74</span>
+                    <span class="info-hex">#00ff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 75 -->
+            <div class="color-swatch" style="background-color: #00ffcc;" data-index="75" data-hex="#00ffcc">
+                <div class="swatch-info">
+                    <span class="info-number">75</span>
+                    <span class="info-hex">#00ffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 76 -->
+            <div class="color-swatch" style="background-color: #00ffff;" data-index="76" data-hex="#00ffff">
+                <div class="swatch-info">
+                    <span class="info-number">76</span>
+                    <span class="info-hex">#00ffff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 77 -->
+            <div class="color-swatch" style="background-color: #330000;" data-index="77" data-hex="#330000">
+                <div class="swatch-info">
+                    <span class="info-number">77</span>
+                    <span class="info-hex">#330000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 78 -->
+            <div class="color-swatch" style="background-color: #330033;" data-index="78" data-hex="#330033">
+                <div class="swatch-info">
+                    <span class="info-number">78</span>
+                    <span class="info-hex">#330033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 79 -->
+            <div class="color-swatch" style="background-color: #330066;" data-index="79" data-hex="#330066">
+                <div class="swatch-info">
+                    <span class="info-number">79</span>
+                    <span class="info-hex">#330066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 80 -->
+            <div class="color-swatch" style="background-color: #330099;" data-index="80" data-hex="#330099">
+                <div class="swatch-info">
+                    <span class="info-number">80</span>
+                    <span class="info-hex">#330099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 81 -->
+            <div class="color-swatch" style="background-color: #3300cc;" data-index="81" data-hex="#3300cc">
+                <div class="swatch-info">
+                    <span class="info-number">81</span>
+                    <span class="info-hex">#3300cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 82 -->
+            <div class="color-swatch" style="background-color: #3300ff;" data-index="82" data-hex="#3300ff">
+                <div class="swatch-info">
+                    <span class="info-number">82</span>
+                    <span class="info-hex">#3300ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 83 -->
+            <div class="color-swatch" style="background-color: #333300;" data-index="83" data-hex="#333300">
+                <div class="swatch-info">
+                    <span class="info-number">83</span>
+                    <span class="info-hex">#333300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 84 -->
+            <div class="color-swatch" style="background-color: #333333;" data-index="84" data-hex="#333333">
+                <div class="swatch-info">
+                    <span class="info-number">84</span>
+                    <span class="info-hex">#333333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 85 -->
+            <div class="color-swatch" style="background-color: #333366;" data-index="85" data-hex="#333366">
+                <div class="swatch-info">
+                    <span class="info-number">85</span>
+                    <span class="info-hex">#333366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 86 -->
+            <div class="color-swatch" style="background-color: #333399;" data-index="86" data-hex="#333399">
+                <div class="swatch-info">
+                    <span class="info-number">86</span>
+                    <span class="info-hex">#333399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 87 -->
+            <div class="color-swatch" style="background-color: #3333cc;" data-index="87" data-hex="#3333cc">
+                <div class="swatch-info">
+                    <span class="info-number">87</span>
+                    <span class="info-hex">#3333cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 88 -->
+            <div class="color-swatch" style="background-color: #3333ff;" data-index="88" data-hex="#3333ff">
+                <div class="swatch-info">
+                    <span class="info-number">88</span>
+                    <span class="info-hex">#3333ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 89 -->
+            <div class="color-swatch" style="background-color: #336600;" data-index="89" data-hex="#336600">
+                <div class="swatch-info">
+                    <span class="info-number">89</span>
+                    <span class="info-hex">#336600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 90 -->
+            <div class="color-swatch" style="background-color: #336633;" data-index="90" data-hex="#336633">
+                <div class="swatch-info">
+                    <span class="info-number">90</span>
+                    <span class="info-hex">#336633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 91 -->
+            <div class="color-swatch" style="background-color: #336666;" data-index="91" data-hex="#336666">
+                <div class="swatch-info">
+                    <span class="info-number">91</span>
+                    <span class="info-hex">#336666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 92 -->
+            <div class="color-swatch" style="background-color: #336699;" data-index="92" data-hex="#336699">
+                <div class="swatch-info">
+                    <span class="info-number">92</span>
+                    <span class="info-hex">#336699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 93 -->
+            <div class="color-swatch" style="background-color: #3366cc;" data-index="93" data-hex="#3366cc">
+                <div class="swatch-info">
+                    <span class="info-number">93</span>
+                    <span class="info-hex">#3366cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 94 -->
+            <div class="color-swatch" style="background-color: #3366ff;" data-index="94" data-hex="#3366ff">
+                <div class="swatch-info">
+                    <span class="info-number">94</span>
+                    <span class="info-hex">#3366ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 95 -->
+            <div class="color-swatch" style="background-color: #339900;" data-index="95" data-hex="#339900">
+                <div class="swatch-info">
+                    <span class="info-number">95</span>
+                    <span class="info-hex">#339900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 96 -->
+            <div class="color-swatch" style="background-color: #339933;" data-index="96" data-hex="#339933">
+                <div class="swatch-info">
+                    <span class="info-number">96</span>
+                    <span class="info-hex">#339933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 97 -->
+            <div class="color-swatch" style="background-color: #339966;" data-index="97" data-hex="#339966">
+                <div class="swatch-info">
+                    <span class="info-number">97</span>
+                    <span class="info-hex">#339966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 98 -->
+            <div class="color-swatch" style="background-color: #339999;" data-index="98" data-hex="#339999">
+                <div class="swatch-info">
+                    <span class="info-number">98</span>
+                    <span class="info-hex">#339999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 99 -->
+            <div class="color-swatch" style="background-color: #3399cc;" data-index="99" data-hex="#3399cc">
+                <div class="swatch-info">
+                    <span class="info-number">99</span>
+                    <span class="info-hex">#3399cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 100 -->
+            <div class="color-swatch" style="background-color: #3399ff;" data-index="100" data-hex="#3399ff">
+                <div class="swatch-info">
+                    <span class="info-number">100</span>
+                    <span class="info-hex">#3399ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 101 -->
+            <div class="color-swatch" style="background-color: #33cc00;" data-index="101" data-hex="#33cc00">
+                <div class="swatch-info">
+                    <span class="info-number">101</span>
+                    <span class="info-hex">#33cc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 102 -->
+            <div class="color-swatch" style="background-color: #33cc33;" data-index="102" data-hex="#33cc33">
+                <div class="swatch-info">
+                    <span class="info-number">102</span>
+                    <span class="info-hex">#33cc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 103 -->
+            <div class="color-swatch" style="background-color: #33cc66;" data-index="103" data-hex="#33cc66">
+                <div class="swatch-info">
+                    <span class="info-number">103</span>
+                    <span class="info-hex">#33cc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 104 -->
+            <div class="color-swatch" style="background-color: #33cc99;" data-index="104" data-hex="#33cc99">
+                <div class="swatch-info">
+                    <span class="info-number">104</span>
+                    <span class="info-hex">#33cc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 105 -->
+            <div class="color-swatch" style="background-color: #33cccc;" data-index="105" data-hex="#33cccc">
+                <div class="swatch-info">
+                    <span class="info-number">105</span>
+                    <span class="info-hex">#33cccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 106 -->
+            <div class="color-swatch" style="background-color: #33ccff;" data-index="106" data-hex="#33ccff">
+                <div class="swatch-info">
+                    <span class="info-number">106</span>
+                    <span class="info-hex">#33ccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 107 -->
+            <div class="color-swatch" style="background-color: #33ff00;" data-index="107" data-hex="#33ff00">
+                <div class="swatch-info">
+                    <span class="info-number">107</span>
+                    <span class="info-hex">#33ff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 108 -->
+            <div class="color-swatch" style="background-color: #33ff33;" data-index="108" data-hex="#33ff33">
+                <div class="swatch-info">
+                    <span class="info-number">108</span>
+                    <span class="info-hex">#33ff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 109 -->
+            <div class="color-swatch" style="background-color: #33ff66;" data-index="109" data-hex="#33ff66">
+                <div class="swatch-info">
+                    <span class="info-number">109</span>
+                    <span class="info-hex">#33ff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 110 -->
+            <div class="color-swatch" style="background-color: #33ff99;" data-index="110" data-hex="#33ff99">
+                <div class="swatch-info">
+                    <span class="info-number">110</span>
+                    <span class="info-hex">#33ff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 111 -->
+            <div class="color-swatch" style="background-color: #33ffcc;" data-index="111" data-hex="#33ffcc">
+                <div class="swatch-info">
+                    <span class="info-number">111</span>
+                    <span class="info-hex">#33ffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 112 -->
+            <div class="color-swatch" style="background-color: #33ffff;" data-index="112" data-hex="#33ffff">
+                <div class="swatch-info">
+                    <span class="info-number">112</span>
+                    <span class="info-hex">#33ffff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 113 -->
+            <div class="color-swatch" style="background-color: #660000;" data-index="113" data-hex="#660000">
+                <div class="swatch-info">
+                    <span class="info-number">113</span>
+                    <span class="info-hex">#660000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 114 -->
+            <div class="color-swatch" style="background-color: #660033;" data-index="114" data-hex="#660033">
+                <div class="swatch-info">
+                    <span class="info-number">114</span>
+                    <span class="info-hex">#660033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 115 -->
+            <div class="color-swatch" style="background-color: #660066;" data-index="115" data-hex="#660066">
+                <div class="swatch-info">
+                    <span class="info-number">115</span>
+                    <span class="info-hex">#660066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 116 -->
+            <div class="color-swatch" style="background-color: #660099;" data-index="116" data-hex="#660099">
+                <div class="swatch-info">
+                    <span class="info-number">116</span>
+                    <span class="info-hex">#660099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 117 -->
+            <div class="color-swatch" style="background-color: #6600cc;" data-index="117" data-hex="#6600cc">
+                <div class="swatch-info">
+                    <span class="info-number">117</span>
+                    <span class="info-hex">#6600cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 118 -->
+            <div class="color-swatch" style="background-color: #6600ff;" data-index="118" data-hex="#6600ff">
+                <div class="swatch-info">
+                    <span class="info-number">118</span>
+                    <span class="info-hex">#6600ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 119 -->
+            <div class="color-swatch" style="background-color: #663300;" data-index="119" data-hex="#663300">
+                <div class="swatch-info">
+                    <span class="info-number">119</span>
+                    <span class="info-hex">#663300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 120 -->
+            <div class="color-swatch" style="background-color: #663333;" data-index="120" data-hex="#663333">
+                <div class="swatch-info">
+                    <span class="info-number">120</span>
+                    <span class="info-hex">#663333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 121 -->
+            <div class="color-swatch" style="background-color: #663366;" data-index="121" data-hex="#663366">
+                <div class="swatch-info">
+                    <span class="info-number">121</span>
+                    <span class="info-hex">#663366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 122 -->
+            <div class="color-swatch" style="background-color: #663399;" data-index="122" data-hex="#663399">
+                <div class="swatch-info">
+                    <span class="info-number">122</span>
+                    <span class="info-hex">#663399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 123 -->
+            <div class="color-swatch" style="background-color: #6633cc;" data-index="123" data-hex="#6633cc">
+                <div class="swatch-info">
+                    <span class="info-number">123</span>
+                    <span class="info-hex">#6633cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 124 -->
+            <div class="color-swatch" style="background-color: #6633ff;" data-index="124" data-hex="#6633ff">
+                <div class="swatch-info">
+                    <span class="info-number">124</span>
+                    <span class="info-hex">#6633ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 125 -->
+            <div class="color-swatch" style="background-color: #666600;" data-index="125" data-hex="#666600">
+                <div class="swatch-info">
+                    <span class="info-number">125</span>
+                    <span class="info-hex">#666600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 126 -->
+            <div class="color-swatch" style="background-color: #666633;" data-index="126" data-hex="#666633">
+                <div class="swatch-info">
+                    <span class="info-number">126</span>
+                    <span class="info-hex">#666633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 127 -->
+            <div class="color-swatch" style="background-color: #666666;" data-index="127" data-hex="#666666">
+                <div class="swatch-info">
+                    <span class="info-number">127</span>
+                    <span class="info-hex">#666666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 128 -->
+            <div class="color-swatch" style="background-color: #666699;" data-index="128" data-hex="#666699">
+                <div class="swatch-info">
+                    <span class="info-number">128</span>
+                    <span class="info-hex">#666699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 129 -->
+            <div class="color-swatch" style="background-color: #6666cc;" data-index="129" data-hex="#6666cc">
+                <div class="swatch-info">
+                    <span class="info-number">129</span>
+                    <span class="info-hex">#6666cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 130 -->
+            <div class="color-swatch" style="background-color: #6666ff;" data-index="130" data-hex="#6666ff">
+                <div class="swatch-info">
+                    <span class="info-number">130</span>
+                    <span class="info-hex">#6666ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 131 -->
+            <div class="color-swatch" style="background-color: #669900;" data-index="131" data-hex="#669900">
+                <div class="swatch-info">
+                    <span class="info-number">131</span>
+                    <span class="info-hex">#669900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 132 -->
+            <div class="color-swatch" style="background-color: #669933;" data-index="132" data-hex="#669933">
+                <div class="swatch-info">
+                    <span class="info-number">132</span>
+                    <span class="info-hex">#669933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 133 -->
+            <div class="color-swatch" style="background-color: #669966;" data-index="133" data-hex="#669966">
+                <div class="swatch-info">
+                    <span class="info-number">133</span>
+                    <span class="info-hex">#669966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 134 -->
+            <div class="color-swatch" style="background-color: #669999;" data-index="134" data-hex="#669999">
+                <div class="swatch-info">
+                    <span class="info-number">134</span>
+                    <span class="info-hex">#669999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 135 -->
+            <div class="color-swatch" style="background-color: #6699cc;" data-index="135" data-hex="#6699cc">
+                <div class="swatch-info">
+                    <span class="info-number">135</span>
+                    <span class="info-hex">#6699cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 136 -->
+            <div class="color-swatch" style="background-color: #6699ff;" data-index="136" data-hex="#6699ff">
+                <div class="swatch-info">
+                    <span class="info-number">136</span>
+                    <span class="info-hex">#6699ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 137 -->
+            <div class="color-swatch" style="background-color: #66cc00;" data-index="137" data-hex="#66cc00">
+                <div class="swatch-info">
+                    <span class="info-number">137</span>
+                    <span class="info-hex">#66cc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 138 -->
+            <div class="color-swatch" style="background-color: #66cc33;" data-index="138" data-hex="#66cc33">
+                <div class="swatch-info">
+                    <span class="info-number">138</span>
+                    <span class="info-hex">#66cc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 139 -->
+            <div class="color-swatch" style="background-color: #66cc66;" data-index="139" data-hex="#66cc66">
+                <div class="swatch-info">
+                    <span class="info-number">139</span>
+                    <span class="info-hex">#66cc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 140 -->
+            <div class="color-swatch" style="background-color: #66cc99;" data-index="140" data-hex="#66cc99">
+                <div class="swatch-info">
+                    <span class="info-number">140</span>
+                    <span class="info-hex">#66cc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 141 -->
+            <div class="color-swatch" style="background-color: #66cccc;" data-index="141" data-hex="#66cccc">
+                <div class="swatch-info">
+                    <span class="info-number">141</span>
+                    <span class="info-hex">#66cccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 142 -->
+            <div class="color-swatch" style="background-color: #66ccff;" data-index="142" data-hex="#66ccff">
+                <div class="swatch-info">
+                    <span class="info-number">142</span>
+                    <span class="info-hex">#66ccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 143 -->
+            <div class="color-swatch" style="background-color: #66ff00;" data-index="143" data-hex="#66ff00">
+                <div class="swatch-info">
+                    <span class="info-number">143</span>
+                    <span class="info-hex">#66ff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 144 -->
+            <div class="color-swatch" style="background-color: #66ff33;" data-index="144" data-hex="#66ff33">
+                <div class="swatch-info">
+                    <span class="info-number">144</span>
+                    <span class="info-hex">#66ff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 145 -->
+            <div class="color-swatch" style="background-color: #66ff66;" data-index="145" data-hex="#66ff66">
+                <div class="swatch-info">
+                    <span class="info-number">145</span>
+                    <span class="info-hex">#66ff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 146 -->
+            <div class="color-swatch" style="background-color: #66ff99;" data-index="146" data-hex="#66ff99">
+                <div class="swatch-info">
+                    <span class="info-number">146</span>
+                    <span class="info-hex">#66ff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 147 -->
+            <div class="color-swatch" style="background-color: #66ffcc;" data-index="147" data-hex="#66ffcc">
+                <div class="swatch-info">
+                    <span class="info-number">147</span>
+                    <span class="info-hex">#66ffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 148 -->
+            <div class="color-swatch" style="background-color: #66ffff;" data-index="148" data-hex="#66ffff">
+                <div class="swatch-info">
+                    <span class="info-number">148</span>
+                    <span class="info-hex">#66ffff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 149 -->
+            <div class="color-swatch" style="background-color: #990000;" data-index="149" data-hex="#990000">
+                <div class="swatch-info">
+                    <span class="info-number">149</span>
+                    <span class="info-hex">#990000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 150 -->
+            <div class="color-swatch" style="background-color: #990033;" data-index="150" data-hex="#990033">
+                <div class="swatch-info">
+                    <span class="info-number">150</span>
+                    <span class="info-hex">#990033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 151 -->
+            <div class="color-swatch" style="background-color: #990066;" data-index="151" data-hex="#990066">
+                <div class="swatch-info">
+                    <span class="info-number">151</span>
+                    <span class="info-hex">#990066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 152 -->
+            <div class="color-swatch" style="background-color: #990099;" data-index="152" data-hex="#990099">
+                <div class="swatch-info">
+                    <span class="info-number">152</span>
+                    <span class="info-hex">#990099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 153 -->
+            <div class="color-swatch" style="background-color: #9900cc;" data-index="153" data-hex="#9900cc">
+                <div class="swatch-info">
+                    <span class="info-number">153</span>
+                    <span class="info-hex">#9900cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 154 -->
+            <div class="color-swatch" style="background-color: #9900ff;" data-index="154" data-hex="#9900ff">
+                <div class="swatch-info">
+                    <span class="info-number">154</span>
+                    <span class="info-hex">#9900ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 155 -->
+            <div class="color-swatch" style="background-color: #993300;" data-index="155" data-hex="#993300">
+                <div class="swatch-info">
+                    <span class="info-number">155</span>
+                    <span class="info-hex">#993300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 156 -->
+            <div class="color-swatch" style="background-color: #993333;" data-index="156" data-hex="#993333">
+                <div class="swatch-info">
+                    <span class="info-number">156</span>
+                    <span class="info-hex">#993333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 157 -->
+            <div class="color-swatch" style="background-color: #993366;" data-index="157" data-hex="#993366">
+                <div class="swatch-info">
+                    <span class="info-number">157</span>
+                    <span class="info-hex">#993366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 158 -->
+            <div class="color-swatch" style="background-color: #993399;" data-index="158" data-hex="#993399">
+                <div class="swatch-info">
+                    <span class="info-number">158</span>
+                    <span class="info-hex">#993399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 159 -->
+            <div class="color-swatch" style="background-color: #9933cc;" data-index="159" data-hex="#9933cc">
+                <div class="swatch-info">
+                    <span class="info-number">159</span>
+                    <span class="info-hex">#9933cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 160 -->
+            <div class="color-swatch" style="background-color: #9933ff;" data-index="160" data-hex="#9933ff">
+                <div class="swatch-info">
+                    <span class="info-number">160</span>
+                    <span class="info-hex">#9933ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 161 -->
+            <div class="color-swatch" style="background-color: #996600;" data-index="161" data-hex="#996600">
+                <div class="swatch-info">
+                    <span class="info-number">161</span>
+                    <span class="info-hex">#996600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 162 -->
+            <div class="color-swatch" style="background-color: #996633;" data-index="162" data-hex="#996633">
+                <div class="swatch-info">
+                    <span class="info-number">162</span>
+                    <span class="info-hex">#996633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 163 -->
+            <div class="color-swatch" style="background-color: #996666;" data-index="163" data-hex="#996666">
+                <div class="swatch-info">
+                    <span class="info-number">163</span>
+                    <span class="info-hex">#996666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 164 -->
+            <div class="color-swatch" style="background-color: #996699;" data-index="164" data-hex="#996699">
+                <div class="swatch-info">
+                    <span class="info-number">164</span>
+                    <span class="info-hex">#996699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 165 -->
+            <div class="color-swatch" style="background-color: #9966cc;" data-index="165" data-hex="#9966cc">
+                <div class="swatch-info">
+                    <span class="info-number">165</span>
+                    <span class="info-hex">#9966cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 166 -->
+            <div class="color-swatch" style="background-color: #9966ff;" data-index="166" data-hex="#9966ff">
+                <div class="swatch-info">
+                    <span class="info-number">166</span>
+                    <span class="info-hex">#9966ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 167 -->
+            <div class="color-swatch" style="background-color: #999900;" data-index="167" data-hex="#999900">
+                <div class="swatch-info">
+                    <span class="info-number">167</span>
+                    <span class="info-hex">#999900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 168 -->
+            <div class="color-swatch" style="background-color: #999933;" data-index="168" data-hex="#999933">
+                <div class="swatch-info">
+                    <span class="info-number">168</span>
+                    <span class="info-hex">#999933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 169 -->
+            <div class="color-swatch" style="background-color: #999966;" data-index="169" data-hex="#999966">
+                <div class="swatch-info">
+                    <span class="info-number">169</span>
+                    <span class="info-hex">#999966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 170 -->
+            <div class="color-swatch" style="background-color: #999999;" data-index="170" data-hex="#999999">
+                <div class="swatch-info">
+                    <span class="info-number">170</span>
+                    <span class="info-hex">#999999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 171 -->
+            <div class="color-swatch" style="background-color: #9999cc;" data-index="171" data-hex="#9999cc">
+                <div class="swatch-info">
+                    <span class="info-number">171</span>
+                    <span class="info-hex">#9999cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 172 -->
+            <div class="color-swatch" style="background-color: #9999ff;" data-index="172" data-hex="#9999ff">
+                <div class="swatch-info">
+                    <span class="info-number">172</span>
+                    <span class="info-hex">#9999ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 173 -->
+            <div class="color-swatch" style="background-color: #99cc00;" data-index="173" data-hex="#99cc00">
+                <div class="swatch-info">
+                    <span class="info-number">173</span>
+                    <span class="info-hex">#99cc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 174 -->
+            <div class="color-swatch" style="background-color: #99cc33;" data-index="174" data-hex="#99cc33">
+                <div class="swatch-info">
+                    <span class="info-number">174</span>
+                    <span class="info-hex">#99cc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 175 -->
+            <div class="color-swatch" style="background-color: #99cc66;" data-index="175" data-hex="#99cc66">
+                <div class="swatch-info">
+                    <span class="info-number">175</span>
+                    <span class="info-hex">#99cc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 176 -->
+            <div class="color-swatch" style="background-color: #99cc99;" data-index="176" data-hex="#99cc99">
+                <div class="swatch-info">
+                    <span class="info-number">176</span>
+                    <span class="info-hex">#99cc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 177 -->
+            <div class="color-swatch" style="background-color: #99cccc;" data-index="177" data-hex="#99cccc">
+                <div class="swatch-info">
+                    <span class="info-number">177</span>
+                    <span class="info-hex">#99cccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 178 -->
+            <div class="color-swatch" style="background-color: #99ccff;" data-index="178" data-hex="#99ccff">
+                <div class="swatch-info">
+                    <span class="info-number">178</span>
+                    <span class="info-hex">#99ccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 179 -->
+            <div class="color-swatch" style="background-color: #99ff00;" data-index="179" data-hex="#99ff00">
+                <div class="swatch-info">
+                    <span class="info-number">179</span>
+                    <span class="info-hex">#99ff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 180 -->
+            <div class="color-swatch" style="background-color: #99ff33;" data-index="180" data-hex="#99ff33">
+                <div class="swatch-info">
+                    <span class="info-number">180</span>
+                    <span class="info-hex">#99ff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 181 -->
+            <div class="color-swatch" style="background-color: #99ff66;" data-index="181" data-hex="#99ff66">
+                <div class="swatch-info">
+                    <span class="info-number">181</span>
+                    <span class="info-hex">#99ff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 182 -->
+            <div class="color-swatch" style="background-color: #99ff99;" data-index="182" data-hex="#99ff99">
+                <div class="swatch-info">
+                    <span class="info-number">182</span>
+                    <span class="info-hex">#99ff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 183 -->
+            <div class="color-swatch" style="background-color: #99ffcc;" data-index="183" data-hex="#99ffcc">
+                <div class="swatch-info">
+                    <span class="info-number">183</span>
+                    <span class="info-hex">#99ffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 184 -->
+            <div class="color-swatch" style="background-color: #99ffff;" data-index="184" data-hex="#99ffff">
+                <div class="swatch-info">
+                    <span class="info-number">184</span>
+                    <span class="info-hex">#99ffff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 185 -->
+            <div class="color-swatch" style="background-color: #cc0000;" data-index="185" data-hex="#cc0000">
+                <div class="swatch-info">
+                    <span class="info-number">185</span>
+                    <span class="info-hex">#cc0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 186 -->
+            <div class="color-swatch" style="background-color: #cc0033;" data-index="186" data-hex="#cc0033">
+                <div class="swatch-info">
+                    <span class="info-number">186</span>
+                    <span class="info-hex">#cc0033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 187 -->
+            <div class="color-swatch" style="background-color: #cc0066;" data-index="187" data-hex="#cc0066">
+                <div class="swatch-info">
+                    <span class="info-number">187</span>
+                    <span class="info-hex">#cc0066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 188 -->
+            <div class="color-swatch" style="background-color: #cc0099;" data-index="188" data-hex="#cc0099">
+                <div class="swatch-info">
+                    <span class="info-number">188</span>
+                    <span class="info-hex">#cc0099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 189 -->
+            <div class="color-swatch" style="background-color: #cc00cc;" data-index="189" data-hex="#cc00cc">
+                <div class="swatch-info">
+                    <span class="info-number">189</span>
+                    <span class="info-hex">#cc00cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 190 -->
+            <div class="color-swatch" style="background-color: #cc00ff;" data-index="190" data-hex="#cc00ff">
+                <div class="swatch-info">
+                    <span class="info-number">190</span>
+                    <span class="info-hex">#cc00ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 191 -->
+            <div class="color-swatch" style="background-color: #cc3300;" data-index="191" data-hex="#cc3300">
+                <div class="swatch-info">
+                    <span class="info-number">191</span>
+                    <span class="info-hex">#cc3300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 192 -->
+            <div class="color-swatch" style="background-color: #cc3333;" data-index="192" data-hex="#cc3333">
+                <div class="swatch-info">
+                    <span class="info-number">192</span>
+                    <span class="info-hex">#cc3333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 193 -->
+            <div class="color-swatch" style="background-color: #cc3366;" data-index="193" data-hex="#cc3366">
+                <div class="swatch-info">
+                    <span class="info-number">193</span>
+                    <span class="info-hex">#cc3366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 194 -->
+            <div class="color-swatch" style="background-color: #cc3399;" data-index="194" data-hex="#cc3399">
+                <div class="swatch-info">
+                    <span class="info-number">194</span>
+                    <span class="info-hex">#cc3399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 195 -->
+            <div class="color-swatch" style="background-color: #cc33cc;" data-index="195" data-hex="#cc33cc">
+                <div class="swatch-info">
+                    <span class="info-number">195</span>
+                    <span class="info-hex">#cc33cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 196 -->
+            <div class="color-swatch" style="background-color: #cc33ff;" data-index="196" data-hex="#cc33ff">
+                <div class="swatch-info">
+                    <span class="info-number">196</span>
+                    <span class="info-hex">#cc33ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 197 -->
+            <div class="color-swatch" style="background-color: #cc6600;" data-index="197" data-hex="#cc6600">
+                <div class="swatch-info">
+                    <span class="info-number">197</span>
+                    <span class="info-hex">#cc6600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 198 -->
+            <div class="color-swatch" style="background-color: #cc6633;" data-index="198" data-hex="#cc6633">
+                <div class="swatch-info">
+                    <span class="info-number">198</span>
+                    <span class="info-hex">#cc6633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 199 -->
+            <div class="color-swatch" style="background-color: #cc6666;" data-index="199" data-hex="#cc6666">
+                <div class="swatch-info">
+                    <span class="info-number">199</span>
+                    <span class="info-hex">#cc6666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 200 -->
+            <div class="color-swatch" style="background-color: #cc6699;" data-index="200" data-hex="#cc6699">
+                <div class="swatch-info">
+                    <span class="info-number">200</span>
+                    <span class="info-hex">#cc6699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 201 -->
+            <div class="color-swatch" style="background-color: #cc66cc;" data-index="201" data-hex="#cc66cc">
+                <div class="swatch-info">
+                    <span class="info-number">201</span>
+                    <span class="info-hex">#cc66cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 202 -->
+            <div class="color-swatch" style="background-color: #cc66ff;" data-index="202" data-hex="#cc66ff">
+                <div class="swatch-info">
+                    <span class="info-number">202</span>
+                    <span class="info-hex">#cc66ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 203 -->
+            <div class="color-swatch" style="background-color: #cc9900;" data-index="203" data-hex="#cc9900">
+                <div class="swatch-info">
+                    <span class="info-number">203</span>
+                    <span class="info-hex">#cc9900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 204 -->
+            <div class="color-swatch" style="background-color: #cc9933;" data-index="204" data-hex="#cc9933">
+                <div class="swatch-info">
+                    <span class="info-number">204</span>
+                    <span class="info-hex">#cc9933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 205 -->
+            <div class="color-swatch" style="background-color: #cc9966;" data-index="205" data-hex="#cc9966">
+                <div class="swatch-info">
+                    <span class="info-number">205</span>
+                    <span class="info-hex">#cc9966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 206 -->
+            <div class="color-swatch" style="background-color: #cc9999;" data-index="206" data-hex="#cc9999">
+                <div class="swatch-info">
+                    <span class="info-number">206</span>
+                    <span class="info-hex">#cc9999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 207 -->
+            <div class="color-swatch" style="background-color: #cc99cc;" data-index="207" data-hex="#cc99cc">
+                <div class="swatch-info">
+                    <span class="info-number">207</span>
+                    <span class="info-hex">#cc99cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 208 -->
+            <div class="color-swatch" style="background-color: #cc99ff;" data-index="208" data-hex="#cc99ff">
+                <div class="swatch-info">
+                    <span class="info-number">208</span>
+                    <span class="info-hex">#cc99ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 209 -->
+            <div class="color-swatch" style="background-color: #cccc00;" data-index="209" data-hex="#cccc00">
+                <div class="swatch-info">
+                    <span class="info-number">209</span>
+                    <span class="info-hex">#cccc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 210 -->
+            <div class="color-swatch" style="background-color: #cccc33;" data-index="210" data-hex="#cccc33">
+                <div class="swatch-info">
+                    <span class="info-number">210</span>
+                    <span class="info-hex">#cccc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 211 -->
+            <div class="color-swatch" style="background-color: #cccc66;" data-index="211" data-hex="#cccc66">
+                <div class="swatch-info">
+                    <span class="info-number">211</span>
+                    <span class="info-hex">#cccc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 212 -->
+            <div class="color-swatch" style="background-color: #cccc99;" data-index="212" data-hex="#cccc99">
+                <div class="swatch-info">
+                    <span class="info-number">212</span>
+                    <span class="info-hex">#cccc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 213 -->
+            <div class="color-swatch" style="background-color: #cccccc;" data-index="213" data-hex="#cccccc">
+                <div class="swatch-info">
+                    <span class="info-number">213</span>
+                    <span class="info-hex">#cccccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 214 -->
+            <div class="color-swatch" style="background-color: #ccccff;" data-index="214" data-hex="#ccccff">
+                <div class="swatch-info">
+                    <span class="info-number">214</span>
+                    <span class="info-hex">#ccccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 215 -->
+            <div class="color-swatch" style="background-color: #ccff00;" data-index="215" data-hex="#ccff00">
+                <div class="swatch-info">
+                    <span class="info-number">215</span>
+                    <span class="info-hex">#ccff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 216 -->
+            <div class="color-swatch" style="background-color: #ccff33;" data-index="216" data-hex="#ccff33">
+                <div class="swatch-info">
+                    <span class="info-number">216</span>
+                    <span class="info-hex">#ccff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 217 -->
+            <div class="color-swatch" style="background-color: #ccff66;" data-index="217" data-hex="#ccff66">
+                <div class="swatch-info">
+                    <span class="info-number">217</span>
+                    <span class="info-hex">#ccff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 218 -->
+            <div class="color-swatch" style="background-color: #ccff99;" data-index="218" data-hex="#ccff99">
+                <div class="swatch-info">
+                    <span class="info-number">218</span>
+                    <span class="info-hex">#ccff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 219 -->
+            <div class="color-swatch" style="background-color: #ccffcc;" data-index="219" data-hex="#ccffcc">
+                <div class="swatch-info">
+                    <span class="info-number">219</span>
+                    <span class="info-hex">#ccffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 220 -->
+            <div class="color-swatch" style="background-color: #ccffff;" data-index="220" data-hex="#ccffff">
+                <div class="swatch-info">
+                    <span class="info-number">220</span>
+                    <span class="info-hex">#ccffff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 221 -->
+            <div class="color-swatch" style="background-color: #ff0000;" data-index="221" data-hex="#ff0000">
+                <div class="swatch-info">
+                    <span class="info-number">221</span>
+                    <span class="info-hex">#ff0000</span>
+                </div>
+            </div>
+
+            <!-- Swatch 222 -->
+            <div class="color-swatch" style="background-color: #ff0033;" data-index="222" data-hex="#ff0033">
+                <div class="swatch-info">
+                    <span class="info-number">222</span>
+                    <span class="info-hex">#ff0033</span>
+                </div>
+            </div>
+
+            <!-- Swatch 223 -->
+            <div class="color-swatch" style="background-color: #ff0066;" data-index="223" data-hex="#ff0066">
+                <div class="swatch-info">
+                    <span class="info-number">223</span>
+                    <span class="info-hex">#ff0066</span>
+                </div>
+            </div>
+
+            <!-- Swatch 224 -->
+            <div class="color-swatch" style="background-color: #ff0099;" data-index="224" data-hex="#ff0099">
+                <div class="swatch-info">
+                    <span class="info-number">224</span>
+                    <span class="info-hex">#ff0099</span>
+                </div>
+            </div>
+
+            <!-- Swatch 225 -->
+            <div class="color-swatch" style="background-color: #ff00cc;" data-index="225" data-hex="#ff00cc">
+                <div class="swatch-info">
+                    <span class="info-number">225</span>
+                    <span class="info-hex">#ff00cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 226 -->
+            <div class="color-swatch" style="background-color: #ff00ff;" data-index="226" data-hex="#ff00ff">
+                <div class="swatch-info">
+                    <span class="info-number">226</span>
+                    <span class="info-hex">#ff00ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 227 -->
+            <div class="color-swatch" style="background-color: #ff3300;" data-index="227" data-hex="#ff3300">
+                <div class="swatch-info">
+                    <span class="info-number">227</span>
+                    <span class="info-hex">#ff3300</span>
+                </div>
+            </div>
+
+            <!-- Swatch 228 -->
+            <div class="color-swatch" style="background-color: #ff3333;" data-index="228" data-hex="#ff3333">
+                <div class="swatch-info">
+                    <span class="info-number">228</span>
+                    <span class="info-hex">#ff3333</span>
+                </div>
+            </div>
+
+            <!-- Swatch 229 -->
+            <div class="color-swatch" style="background-color: #ff3366;" data-index="229" data-hex="#ff3366">
+                <div class="swatch-info">
+                    <span class="info-number">229</span>
+                    <span class="info-hex">#ff3366</span>
+                </div>
+            </div>
+
+            <!-- Swatch 230 -->
+            <div class="color-swatch" style="background-color: #ff3399;" data-index="230" data-hex="#ff3399">
+                <div class="swatch-info">
+                    <span class="info-number">230</span>
+                    <span class="info-hex">#ff3399</span>
+                </div>
+            </div>
+
+            <!-- Swatch 231 -->
+            <div class="color-swatch" style="background-color: #ff33cc;" data-index="231" data-hex="#ff33cc">
+                <div class="swatch-info">
+                    <span class="info-number">231</span>
+                    <span class="info-hex">#ff33cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 232 -->
+            <div class="color-swatch" style="background-color: #ff33ff;" data-index="232" data-hex="#ff33ff">
+                <div class="swatch-info">
+                    <span class="info-number">232</span>
+                    <span class="info-hex">#ff33ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 233 -->
+            <div class="color-swatch" style="background-color: #ff6600;" data-index="233" data-hex="#ff6600">
+                <div class="swatch-info">
+                    <span class="info-number">233</span>
+                    <span class="info-hex">#ff6600</span>
+                </div>
+            </div>
+
+            <!-- Swatch 234 -->
+            <div class="color-swatch" style="background-color: #ff6633;" data-index="234" data-hex="#ff6633">
+                <div class="swatch-info">
+                    <span class="info-number">234</span>
+                    <span class="info-hex">#ff6633</span>
+                </div>
+            </div>
+
+            <!-- Swatch 235 -->
+            <div class="color-swatch" style="background-color: #ff6666;" data-index="235" data-hex="#ff6666">
+                <div class="swatch-info">
+                    <span class="info-number">235</span>
+                    <span class="info-hex">#ff6666</span>
+                </div>
+            </div>
+
+            <!-- Swatch 236 -->
+            <div class="color-swatch" style="background-color: #ff6699;" data-index="236" data-hex="#ff6699">
+                <div class="swatch-info">
+                    <span class="info-number">236</span>
+                    <span class="info-hex">#ff6699</span>
+                </div>
+            </div>
+
+            <!-- Swatch 237 -->
+            <div class="color-swatch" style="background-color: #ff66cc;" data-index="237" data-hex="#ff66cc">
+                <div class="swatch-info">
+                    <span class="info-number">237</span>
+                    <span class="info-hex">#ff66cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 238 -->
+            <div class="color-swatch" style="background-color: #ff66ff;" data-index="238" data-hex="#ff66ff">
+                <div class="swatch-info">
+                    <span class="info-number">238</span>
+                    <span class="info-hex">#ff66ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 239 -->
+            <div class="color-swatch" style="background-color: #ff9900;" data-index="239" data-hex="#ff9900">
+                <div class="swatch-info">
+                    <span class="info-number">239</span>
+                    <span class="info-hex">#ff9900</span>
+                </div>
+            </div>
+
+            <!-- Swatch 240 -->
+            <div class="color-swatch" style="background-color: #ff9933;" data-index="240" data-hex="#ff9933">
+                <div class="swatch-info">
+                    <span class="info-number">240</span>
+                    <span class="info-hex">#ff9933</span>
+                </div>
+            </div>
+
+            <!-- Swatch 241 -->
+            <div class="color-swatch" style="background-color: #ff9966;" data-index="241" data-hex="#ff9966">
+                <div class="swatch-info">
+                    <span class="info-number">241</span>
+                    <span class="info-hex">#ff9966</span>
+                </div>
+            </div>
+
+            <!-- Swatch 242 -->
+            <div class="color-swatch" style="background-color: #ff9999;" data-index="242" data-hex="#ff9999">
+                <div class="swatch-info">
+                    <span class="info-number">242</span>
+                    <span class="info-hex">#ff9999</span>
+                </div>
+            </div>
+
+            <!-- Swatch 243 -->
+            <div class="color-swatch" style="background-color: #ff99cc;" data-index="243" data-hex="#ff99cc">
+                <div class="swatch-info">
+                    <span class="info-number">243</span>
+                    <span class="info-hex">#ff99cc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 244 -->
+            <div class="color-swatch" style="background-color: #ff99ff;" data-index="244" data-hex="#ff99ff">
+                <div class="swatch-info">
+                    <span class="info-number">244</span>
+                    <span class="info-hex">#ff99ff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 245 -->
+            <div class="color-swatch" style="background-color: #ffcc00;" data-index="245" data-hex="#ffcc00">
+                <div class="swatch-info">
+                    <span class="info-number">245</span>
+                    <span class="info-hex">#ffcc00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 246 -->
+            <div class="color-swatch" style="background-color: #ffcc33;" data-index="246" data-hex="#ffcc33">
+                <div class="swatch-info">
+                    <span class="info-number">246</span>
+                    <span class="info-hex">#ffcc33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 247 -->
+            <div class="color-swatch" style="background-color: #ffcc66;" data-index="247" data-hex="#ffcc66">
+                <div class="swatch-info">
+                    <span class="info-number">247</span>
+                    <span class="info-hex">#ffcc66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 248 -->
+            <div class="color-swatch" style="background-color: #ffcc99;" data-index="248" data-hex="#ffcc99">
+                <div class="swatch-info">
+                    <span class="info-number">248</span>
+                    <span class="info-hex">#ffcc99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 249 -->
+            <div class="color-swatch" style="background-color: #ffcccc;" data-index="249" data-hex="#ffcccc">
+                <div class="swatch-info">
+                    <span class="info-number">249</span>
+                    <span class="info-hex">#ffcccc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 250 -->
+            <div class="color-swatch" style="background-color: #ffccff;" data-index="250" data-hex="#ffccff">
+                <div class="swatch-info">
+                    <span class="info-number">250</span>
+                    <span class="info-hex">#ffccff</span>
+                </div>
+            </div>
+
+            <!-- Swatch 251 -->
+            <div class="color-swatch" style="background-color: #ffff00;" data-index="251" data-hex="#ffff00">
+                <div class="swatch-info">
+                    <span class="info-number">251</span>
+                    <span class="info-hex">#ffff00</span>
+                </div>
+            </div>
+
+            <!-- Swatch 252 -->
+            <div class="color-swatch" style="background-color: #ffff33;" data-index="252" data-hex="#ffff33">
+                <div class="swatch-info">
+                    <span class="info-number">252</span>
+                    <span class="info-hex">#ffff33</span>
+                </div>
+            </div>
+
+            <!-- Swatch 253 -->
+            <div class="color-swatch" style="background-color: #ffff66;" data-index="253" data-hex="#ffff66">
+                <div class="swatch-info">
+                    <span class="info-number">253</span>
+                    <span class="info-hex">#ffff66</span>
+                </div>
+            </div>
+
+            <!-- Swatch 254 -->
+            <div class="color-swatch" style="background-color: #ffff99;" data-index="254" data-hex="#ffff99">
+                <div class="swatch-info">
+                    <span class="info-number">254</span>
+                    <span class="info-hex">#ffff99</span>
+                </div>
+            </div>
+
+            <!-- Swatch 255 -->
+            <div class="color-swatch" style="background-color: #ffffcc;" data-index="255" data-hex="#ffffcc">
+                <div class="swatch-info">
+                    <span class="info-number">255</span>
+                    <span class="info-hex">#ffffcc</span>
+                </div>
+            </div>
+
+            <!-- Swatch 256 -->
+            <div class="color-swatch" style="background-color: #ffffff;" data-index="256" data-hex="#ffffff">
+                <div class="swatch-info">
+                    <span class="info-number">256</span>
+                    <span class="info-hex">#ffffff</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('color-search');
+            const swatches = document.querySelectorAll('.color-swatch');
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+
+                swatches.forEach(swatch => {
+                    const index = swatch.getAttribute('data-index');
+                    const hex = swatch.getAttribute('data-hex');
+
+                    if (index.includes(searchTerm) || hex.includes(searchTerm)) {
+                        swatch.classList.remove('hidden');
+                    } else {
+                        swatch.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
