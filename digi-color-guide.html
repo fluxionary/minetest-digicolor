@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digiline Color Swatches</title>
-    <meta name="author" content="Deedee Daydream for Your Land game server">
+	<meta name="author" content="Deedee Daydream for Your Land game server">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -72,6 +72,7 @@
             overflow: hidden;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
+            cursor: pointer;
         }
         .color-swatch:hover {
             transform: scale(1.05);
@@ -104,6 +105,24 @@
         }
         .hidden {
             display: none;
+        }
+
+        /* Confirmation message styling */
+        #copy-confirm {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: #34d399; /* Green */
+            color: #1a1a1a;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+        #copy-confirm.visible {
+            opacity: 1;
         }
     </style>
 </head>
@@ -2169,26 +2188,50 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('color-search');
-            const swatches = document.querySelectorAll('.color-swatch');
+    <div id="copy-confirm" class="">Index Copied!</div>
 
-            searchInput.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('color-search');
+    const swatches = document.querySelectorAll('.color-swatch');
+    const copyConfirmMessage = document.getElementById('copy-confirm');
 
-                swatches.forEach(swatch => {
-                    const index = swatch.getAttribute('data-index');
-                    const hex = swatch.getAttribute('data-hex');
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
 
-                    if (index.includes(searchTerm) || hex.includes(searchTerm)) {
-                        swatch.classList.remove('hidden');
-                    } else {
-                        swatch.classList.add('hidden');
-                    }
-                });
-            });
+        swatches.forEach(swatch => {
+            const index = swatch.getAttribute('data-index');
+            const hex = swatch.getAttribute('data-hex');
+
+            if (index.includes(searchTerm) || hex.includes(searchTerm)) {
+                swatch.classList.remove('hidden');
+            } else {
+                swatch.classList.add('hidden');
+            }
         });
-    </script>
+    });
+
+    swatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+            const indexToCopy = swatch.getAttribute('data-index');
+
+            navigator.clipboard.writeText(indexToCopy)
+                .then(() => {
+                    copyConfirmMessage.classList.add('visible');
+                    setTimeout(() => {
+                        copyConfirmMessage.classList.remove('visible');
+                    }, 1000);
+                })
+                .catch(err => {
+                    console.error('Copy failed:', err);
+                });
+        });
+    });
+});
+</script>
+
+
+<div id="copy-confirm" class="copy-confirm">Index Copied!</div>
+   
 </body>
 </html>
